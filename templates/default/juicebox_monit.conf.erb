@@ -1,0 +1,5 @@
+check process juicebox pidfile <%= @pid %>
+    start program = "/bin/bash -c 'cd <%= @install_dir %> && (java -Dcom.shuetech.embeddedjetty.StartStop.port=<%= @port %> -jar <%= @juicebox_war %> & echo $! > <%= @pid %>)'"
+       as uid <%= @user %> and gid <%= @user %>
+    stop program = "/bin/bash -c '/bin/kill `cat <%= @pid %>`'"
+        as uid <%= @user %> and gid <%= @user %>
